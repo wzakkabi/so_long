@@ -6,72 +6,69 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 09:24:26 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/15 13:29:54 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/17 15:41:33 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int check_P_C_E(int fd)
+int	check_path(char **mp, int y, int x)
 {
 	struct cnt date;
-	
-	date.x = 0;
-	date.E = 0;
-	date.C = 0;
-	date.plr = 0;
-	date.i = 0;
-	while(date.p[date.i])
+	while (mp[++y])
 	{
-		date.p[date.i] = get_next_line(fd);
-		if(!date.p[date.i])
-			break;
-		date.line = ft_strlen(date.p[0]);
-		if(date.line != ft_strlen(date.p[date.i]) || date.p[date.i][0] != '1' || date.p[date.i][date.line - 1] != '1')
-			return 0;
-		date.x = 0;
-		while(date.p[date.i][date.x])
+		while (mp[y][++x])
 		{
-			if(date.p[date.i][date.x] == 'P')
-				date.plr++;
-			else if(date.p[date.i][date.x] == 'C')
-				date.C++;
-			else if(date.p[date.i][date.x] == 'E')
-				date.E++;
-			date.x++;
+			date.x = 0;
+			date.y = 0;
+			if ((mp[y][x] == 'P' && mp[y][x + 1] == '0') || (mp[y][x] == 'P' &&
+			mp[y][x + 1] == 'C') || (mp[y][x] == 'P' && mp[y][x + 1] == 'E'))
+				mp[y][x + ++date.x] = 'P';
+			else if ((mp[y][x] == 'P' && mp[y][x - 1] == '0') || (mp[y][x] == 'P' &&
+			mp[y][x - 1] == 'C') || (mp[y][x] == 'P' && mp[y][x - 1] == 'E'))
+				mp[y][x - ++date.x] = 'P';
+			else if ((mp[y][x] == 'P' && mp[y + 1][x] == '0') || (mp[y][x] == 'P' &&
+			mp[y + 1][x] == 'C') || (mp[y][x] == 'P' && mp[y + 1][x] == 'E'))
+				mp[y + ++date.y][x] = 'P';
+			else if ((mp[y][x] == 'P' && mp[y - 1][x] == '0') || (mp[y][x] == 'P' &&
+			mp[y - 1][x] == 'C') || (mp[y][x] == 'P' && mp[y - 1][x] == 'E'))
+				mp[y - ++date.y][x] = 'P';
+			if(date.x != 0)
+				x = 0;
+			if(date.y != 0)
+				y = 0;
 		}
-		date.i++;
+		x = 0;
 	}
-	if(date.E != 1 || date.plr != 1 || date.C <= 1)
-		printf("check P or E or C");
-		return 3;
-	return 1;
+	return ft_checkp(mp);
 }
-
 // void	check_path(char **mp, int y, int x)
 // {
-// 	while (mp[y])
+// 	while (mp[y][++x])
 // 	{
-// 		while (mp[y][x])
+// 		if ((mp[y][x] == 'P' && mp[y][x + 1] == '0') || (mp[y][x] == 'P' &&
+// 		mp[y][x + 1] == 'C') || (mp[y][x] == 'P' && mp[y][x + 1] == 'E'))
 // 		{
-// 			if ((mp[y][x] == 'P' && mp[y][x + 1] == '0') || (mp[y][x] == 'P' &&
-// 			mp[y][x + 1] == 'C') || (mp[y][x] == 'P' && mp[y][x + 1] == 'E'))
-// 				mp[y][x + 1] = 'P';
-// 			if ((mp[y][x] == 'P' && mp[y][x - 1] == '0') || (mp[y][x] == 'P' &&
-// 			mp[y][x - 1] == 'C') || (mp[y][x] == 'P' && mp[y][x - 1] == 'E'))
-// 				mp[y][x - 1] = 'P';
-// 			if ((mp[y][x] == 'P' && mp[y + 1][x] == '0') || (mp[y][x] == 'P' &&
-// 			mp[y + 1][x] == 'C') || (mp[y][x] == 'P' && mp[y + 1][x] == 'E'))
-// 			{
-// 				mp[y + 1][x] = 'P';
-// 				check_path(mp, 0, 0);
-// 			}
-// 			if ((mp[y][x] == 'P' && mp[y - 1][x] == '0') || (mp[y][x] == 'P' &&
-// 			mp[y - 1][x] == 'C') || (mp[y][x] == 'P' && mp[y - 1][x] == 'E'))
-// 				mp[y - 1][x] = 'P';
-// 			x++;
+// 			mp[y][x + 1] = 'P';
+// 			x = 0;
 // 		}
-// 		x = 0;
-// 		y++;
+// 		if ((mp[y][x] == 'P' && mp[y][x - 1] == '0') || (mp[y][x] == 'P' &&
+// 		mp[y][x - 1] == 'C') || (mp[y][x] == 'P' && mp[y][x - 1] == 'E'))
+// 		{
+// 			mp[y][x - 1] = 'P';
+// 			x = 0;
+// 		}
+// 		if ((mp[y][x] == 'P' && mp[y + 1][x] == '0') || (mp[y][x] == 'P' &&
+// 		mp[y + 1][x] == 'C') || (mp[y][x] == 'P' && mp[y + 1][x] == 'E'))
+// 		{
+// 			mp[y + 1][x] = 'P';
+// 			y = 0;
+// 		}
+// 		if ((mp[y][x] == 'P' && mp[y - 1][x] == '0') || (mp[y][x] == 'P' &&
+// 		mp[y - 1][x] == 'C') || (mp[y][x] == 'P' && mp[y - 1][x] == 'E'))
+// 		{
+// 			mp[y - 1][x] = 'P';
+// 			y = 0;
+// 		}
 // 	}
 // }
