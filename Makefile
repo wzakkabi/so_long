@@ -9,6 +9,9 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	mv get_next_line.o get_next_line_utils.o ./gg
 	ar -rcs $(NAME) $(OBJ)
+	rm -rf $(OBJ)
+	gcc main.c $(NAME)
+	./a.out
 
 %.o : %.c
 	gcc $(FLAGS) -c $<

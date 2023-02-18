@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:04:13 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/17 17:07:34 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/18 15:20:05 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main()
 	int a = check_P_C_E(open("map.ber", O_RDONLY));
 	if(a == 1)
 		{
-			check_path(date.p, 0, 0);
+			while(date.p[++date.i])
+				check_path(date.p, &date.i, 0);
 			date.x = ft_checkp(date.p);
 		}
 	else if (a == 0)

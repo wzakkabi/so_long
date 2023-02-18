@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:25:14 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/17 17:07:54 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/18 15:22:43 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct cnt
 };
 int check_P_C_E(int fd);
 int ft_checkp(char **p);
-void	check_path(char **mp, int y, int x);
+void	check_path(char **mp, int *y, int x);
 int check_line_first_and_last(char *p);
 char **read_maps(int fd);
 

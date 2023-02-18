@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 19:15:03 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/17 17:04:16 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/18 13:35:43 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 int check_P_C_E(int fd)
 {
 	struct cnt date;
-	
-	date.x = 0;
-	date.E = 0;
-	date.C = 0;
-	date.plr = 0;
-	date.i = 0;
+
+	date.x = ((date.E = 0),(date.C = 0),(date.plr = 0),(date.i = 0),0);
 	while(date.p[date.i])
 	{
 		date.p[date.i] = get_next_line(fd);
