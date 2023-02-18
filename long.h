@@ -30,7 +30,7 @@ struct cnt
 	int i;
 	int y;
 };
-int check_P_C_E(int fd);
+int check_P_C_E(char **p);
 int ft_checkp(char **p);
 void	check_path(char **mp, int *y, int x);
 int check_line_first_and_last(char *p);

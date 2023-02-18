@@ -17,12 +17,22 @@ int	main()
 	struct cnt date;
 	date.i = 0;
 	date.p = read_maps(open("map.ber", O_RDONLY));
-	int a = check_P_C_E(open("map.ber", O_RDONLY));
+	int a = check_P_C_E(date.p);
 	if(a == 1)
 		{
 			while(date.p[++date.i])
 				check_path(date.p, &date.i, 0);
 			date.x = ft_checkp(date.p);
+				if(date.x == 1)
+				{
+					printf("error player cant collect all the collectible");
+					return 0;
+				}
+				else if(date.x == 3)
+				{
+					printf("error there is some other carracter in the map :(");
+					return 0;
+				}
 		}
 	else if (a == 0)
 		printf("check the '1' in the frest or last in every line");
