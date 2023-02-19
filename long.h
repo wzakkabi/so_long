@@ -29,6 +29,7 @@ struct cnt
 	int line;
 	int i;
 	int y;
+	int a;
 };
 int check_P_C_E(char **p);
 int ft_checkp(char **p);

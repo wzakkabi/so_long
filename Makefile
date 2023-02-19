@@ -11,7 +11,7 @@ $(NAME) : $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 	rm -rf $(OBJ)
 	gcc main.c $(NAME)
-	./a.out
+	./a.out map.ber
 
 %.o : %.c
 	gcc $(FLAGS) -c $<

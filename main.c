@@ -12,37 +12,59 @@
 
 #include "long.h"
 
-int	main()
+
+void free_chyata(char **p)
+{
+	int x = 0;
+
+	while(p[x])
+	{
+		free(p[x]);
+		x++;
+	}
+}
+
+int checkmaps(char *av)
 {
 	struct cnt date;
-	date.i = 0;
+
 	date.p = read_maps(open("map.ber", O_RDONLY));
-	int a = check_P_C_E(date.p);
-	if(a == 1)
+	date.a = check_P_C_E(date.p);
+	if(date.a == 1)
+	{
+		while(date.p[++date.i])
+			check_path(date.p, &date.i, 0);
+		date.x = ft_checkp(date.p);
+		if(date.x == 0)
 		{
-			while(date.p[++date.i])
-				check_path(date.p, &date.i, 0);
-			date.x = ft_checkp(date.p);
-				if(date.x == 1)
-				{
-					printf("error player cant collect all the collectible");
-					return 0;
-				}
-				else if(date.x == 3)
-				{
-					printf("error there is some other carracter in the map :(");
-					return 0;
-				}
+			free_chyata(date.p);
+			return 1;
 		}
-	else if (a == 0)
+		else if(date.x == 1)
+			printf("error player cant collect all the collectible");
+		else if(date.x == 2)
+			printf("error there is some other carracter in the map :(");
+	}
+	else if (date.a == 0)
 		printf("check the '1' in the frest or last in every line");
-	else if (a == 2)
+	else if (date.a == 2)
 		printf("check C or P of E");
-	else if ( a == 3)
+	else if (date.a == 3)
 		printf("check the 1 in the last and first line");
-	printf("%d\n", date.x);
-	date.i = 0;
-	while(date.p[date.i])
-		printf("%s\n", date.p[date.i++]);
+	free_chyata(date.p);
+	return 0;
+}
+
+int	main(int ac, char **av)
+{
+	struct cnt date;
+	if(ac == 2)
+	{
+		date.x = 0;
+		while(av[1][date.x])
+			date.x++;
+		if(av[1][date.x - 1] == 'r' && av[1][date.x - 2] == 'e' && av[1][date.x - 3] == 'b' && av[1][date.x - 4] == '.')
+			printf("succes");
+	}
 	return 0;
 }
