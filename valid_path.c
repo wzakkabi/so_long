@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:23:55 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/22 01:51:57 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:12:54 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,28 @@ int check_ECP(char **p)
 			return 2;
 		s.x = -1;
 	}
+	if(check_line_first_and_last(p[0], p[s.y - 1]) == 0)
+		return 4;
 	if(s.E != 1 || s.P != 1 || s.C < 1)
 		return 3;
 	return 0;
+}
+
+int		check_p_path_valid_or_not(char **p)
+{
+	int x = -1;
+	int y = -1;
+	
+	while(p[++y])
+	{
+		while(p[y][++x])
+		{
+			if(p[y][x] == 'C' || p[y][x] == 'E')
+				return 0;
+		}
+		x = -1;
+	}
+	return 1;
 }
 
 void	check_path(char **mp, int *y, int x)
@@ -65,21 +84,21 @@ void	check_path(char **mp, int *y, int x)
 	}
 }
 
-// int check_line_first_and_last(char *first, char *last)
-// {
-// 	int x;
+int check_line_first_and_last(char *first, char *last)
+{
+	int x;
 
-// 	x = 0;
-// 	if(!first || !last)
-// 		return 0;
-// 	while(first[x] && last[x])
-// 	{
-// 		if(first[x] != '1' || last[x] != '1')
-// 			return 0;
-// 		x++;
-// 	}
-// 	return 1;
-// }
+	x = 0;
+	if(!first || !last)
+		return 0;
+	while(first[x] && last[x])
+	{
+		if(first[x] != '1' || last[x] != '1')
+			return 0;
+		x++;
+	}
+	return 1;
+}
 
 void	read_map(char ***map, char *file)
 {
@@ -93,7 +112,7 @@ void	read_map(char ***map, char *file)
 		cnt = get_next_line(fd);
 		if(cnt == 0)
 			break;
-		//free(cnt);
+		free(cnt);
 		x++;
 	}
 	close(fd);
