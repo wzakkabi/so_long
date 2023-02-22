@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:04:13 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/22 19:18:56 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/23 00:07:12 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int test_map(char *file)
 {
     char **map;
     int vld;
+    struct strct s;
     int x = 0;
     read_map(&map, file);
-    vld = check_ECP(map);
+    vld = check_ecp(map, s);
     if(vld == 1)
         printf("there is someting other caracter in the map");
     else if(vld == 2)

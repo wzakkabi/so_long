@@ -6,58 +6,62 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:23:55 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/22 19:12:54 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/23 00:19:16 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "long.h"
-
-int check_ECP(char **p)
+//function check wach kain C ola E ola  p and if there is some other carracter
+int	check_ecp(char **p, struct strct s)
 {
-	struct strct s;
-	s.y = ((s.x = -1),(s.E = 0),(s.C = 0),(s.P = 0), -1);
-	s.line = ft_strlen(p[0]);
-	while(p[++s.y])
+	s.y = ((s.E = 0), (s.C = 0), (s.P = 0), (s.line = ft_strlen(p[0])), -1);
+	while (p[++s.y])
 	{
-		while(p[s.y][++s.x])
+		s.x = -1;
+		while (p[s.y][++s.x])
 		{
-			if(p[s.y][s.x] == 'P')
+			if (p[s.y][s.x] == 'P')
 				s.P++;
-			else if(p[s.y][s.x] == 'E')
+			else if (p[s.y][s.x] == 'E')
 				s.E++;
 			else if (p[s.y][s.x] == 'C')
 				s.C++;
 			else if (p[s.y][s.x] != '0' && p[s.y][s.x] != '1')
-				return 1;
+				return (1);
 		}
-		if (s.line != ft_strlen(p[s.y]) || p[s.y][0] != '1' || p[s.y][s.x - 1] != '1')
-			return 2;
-		s.x = -1;
+		if (s.line != ft_strlen(p[s.y]) || p[s.y][0] != '1' ||
+		p[s.y][s.x - 1] != '1')
+			return (2);
 	}
-	if(check_line_first_and_last(p[0], p[s.y - 1]) == 0)
-		return 4;
-	if(s.E != 1 || s.P != 1 || s.C < 1)
-		return 3;
-	return 0;
+	if (check_line_first_and_last(p[0], p[s.y - 1]) == 0)
+		return (4);
+	if (s.E != 1 || s.P != 1 || s.C < 1)
+		return (3);
+	return (0);
 }
+//check wach kain fin idoz l player bach i yakol kolchi
 
-int		check_p_path_valid_or_not(char **p)
+int	check_p_path_valid_or_not(char **p)
 {
-	int x = -1;
-	int y = -1;
-	
-	while(p[++y])
+	int	x;
+	int	y;
+
+	y = -1;
+	x = -1;
+	while (p[++y])
 	{
-		while(p[y][++x])
+		while (p[y][++x])
 		{
-			if(p[y][x] == 'C' || p[y][x] == 'E')
-				return 0;
+			if (p[y][x] == 'C' || p[y][x] == 'E')
+				return (0);
 		}
 		x = -1;
 	}
-	return 1;
+	return (1);
 }
 
+/*hna kan3mer kolchi b p fin 9der iwsl l player o 
+flkher kantcheck wach ba9a chi c ola E ila kaint ba9a rah invalid path*/
 void	check_path(char **mp, int *y, int x)
 {
 	struct strct	date;
@@ -84,34 +88,36 @@ void	check_path(char **mp, int *y, int x)
 	}
 }
 
-int check_line_first_and_last(char *first, char *last)
+// hna kan9lb ela '1' wach kain f lkher o lwel
+int	check_line_first_and_last(char *first, char *last)
 {
-	int x;
+	int	x;
 
 	x = 0;
-	if(!first || !last)
-		return 0;
-	while(first[x] && last[x])
+	if (!first || !last)
+		return (0);
+	while (first[x] && last[x])
 	{
-		if(first[x] != '1' || last[x] != '1')
-			return 0;
+		if (first[x] != '1' || last[x] != '1')
+			return (0);
 		x++;
 	}
-	return 1;
+	return (1);
 }
 
+//hna kan read l map o kan malloki liha
 void	read_map(char ***map, char *file)
 {
-	int x = 0;
-	int fd;
-	char *cnt;
+	int		x;
+	int		fd;
+	char	*cnt;
 
-	fd = open(file, O_RDONLY);
-	while(1)
+	fd = ((x = 0), open(file, O_RDONLY));
+	while (1)
 	{
 		cnt = get_next_line(fd);
-		if(cnt == 0)
-			break;
+		if (cnt == 0)
+			break ;
 		free(cnt);
 		x++;
 	}
@@ -119,12 +125,12 @@ void	read_map(char ***map, char *file)
 	(*map) = (char **)malloc((x + 1) * sizeof(int *));
 	x = 0;
 	fd = open(file, O_RDONLY);
-	while(1)
-	 {
-	 	(*map)[x] = get_next_line(fd);
-		if((*map)[x] == 0)
-			break;
-	 	x++;
+	while (1)
+	{
+		(*map)[x] = get_next_line(fd);
+		if ((*map)[x] == 0)
+			break ;
+		x++;
 	}
 	close(fd);
 }

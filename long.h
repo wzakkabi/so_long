@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:25:14 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/22 19:10:11 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/23 00:19:32 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ struct strct
 	int y;
 	int line;
 };
-int		check_ECP(char **p);
+int	check_ecp(char **p, struct strct s);
 int		check_P_C_E(char **p);
 void	check_path(char **mp, int *y, int x);
 int		check_line_first_and_last(char *first, char *last);
