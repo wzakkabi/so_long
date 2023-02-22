@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:25:14 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/18 15:22:43 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/22 00:06:39 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,19 @@
 # include "./gg/get_next_line.h"
 # include <unistd.h>
 
-struct cnt
+struct strct
 {
-	char **p;
-	int plr;
 	int E;
 	int C;
+	int P;
 	int x;
-	int line;
-	int i;
 	int y;
-	int a;
+	int line;
 };
+int check_ECP(char **p);
 int check_P_C_E(char **p);
-int ft_checkp(char **p);
 void	check_path(char **mp, int *y, int x);
 int check_line_first_and_last(char *p);
-char **read_maps(int fd);
+void	read_map(char ***map, char *file);
 
 #endif

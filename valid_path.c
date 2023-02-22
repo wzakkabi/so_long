@@ -6,69 +6,42 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:23:55 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/18 15:35:14 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/22 01:51:57 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "long.h"
 
-int ft_checkp(char **p)
+int check_ECP(char **p)
 {
-	struct cnt	date;
-
-	date.i = 0;
-	date.x = 0;
-	while (p[date.i])
+	struct strct s;
+	s.y = ((s.x = -1),(s.E = 0),(s.C = 0),(s.P = 0), -1);
+	s.line = ft_strlen(p[0]);
+	while(p[++s.y])
 	{
-		while (p[date.i][date.x])
+		while(p[s.y][++s.x])
 		{
-			if (p[date.i][date.x] == 'E' || p[date.i][date.x] == 'C')
-				return (1);
-			else if (p[date.i][date.x] == '1' || p[date.i][date.x] == '0'
-			|| p[date.i][date.x] == 'P')	
-				date.x++;
-			else
-				return (2);
+			if(p[s.y][s.x] == 'P')
+				s.P++;
+			else if(p[s.y][s.x] == 'E')
+				s.E++;
+			else if (p[s.y][s.x] == 'C')
+				s.C++;
+			else if (p[s.y][s.x] != '0' && p[s.y][s.x] != '1')
+				return 1;
 		}
-		date.x = 0;
-		date.i++;
+		if (s.line != ft_strlen(p[s.y]) || p[s.y][0] != '1' || p[s.y][s.x - 1] != '1')
+			return 2;
+		s.x = -1;
 	}
-	return (0);
+	if(s.E != 1 || s.P != 1 || s.C < 1)
+		return 3;
+	return 0;
 }
-
-int check_P_C_E(char **p)
-{
-	struct cnt date;
-
-	date.x = ((date.E = 0),(date.C = 0),(date.plr = 0),(date.i = 0),0);
-	while (p[++date.i])
-	{
-		date.line = ft_strlen(p[0]);
-		if (date.line != ft_strlen(p[date.i]) || p[date.i][0] != '1' || p[date.i][date.line - 1] != '1')
-			return (0);
-		date.x = 0;
-		while (p[date.i][date.x])
-		{
-			if (p[date.i][date.x] == 'P')
-				date.plr++;
-			else if (p[date.i][date.x] == 'C')
-				date.C++;
-			else if (p[date.i][date.x] == 'E')
-				date.E++;
-			date.x++;
-		}
-	}
-	if (date.E != 1 || date.plr != 1 || date.C < 1)
-		return (2);
-	if (check_line_first_and_last(p[0]) == 0 || check_line_first_and_last(p[date.i - 1]) == 0)
-		return (3);
-	return (1);
-}
-
 
 void	check_path(char **mp, int *y, int x)
 {
-	struct cnt	date;
+	struct strct	date;
 
 	while (mp[*y][++x])
 	{
@@ -92,31 +65,47 @@ void	check_path(char **mp, int *y, int x)
 	}
 }
 
-int check_line_first_and_last(char *p)
+// int check_line_first_and_last(char *first, char *last)
+// {
+// 	int x;
+
+// 	x = 0;
+// 	if(!first || !last)
+// 		return 0;
+// 	while(first[x] && last[x])
+// 	{
+// 		if(first[x] != '1' || last[x] != '1')
+// 			return 0;
+// 		x++;
+// 	}
+// 	return 1;
+// }
+
+void	read_map(char ***map, char *file)
 {
 	int x = 0;
-	if(!p)
-		return 0;
-	while(p[x])
-	{
-		if(p[x] != '1')
-			return 0;
-		x++;
-	}
-	return 1;
-}
+	int fd;
+	char *cnt;
 
-char **read_maps(int fd)
-{
-	struct cnt date;
-
-	date.x = 0;
+	fd = open(file, O_RDONLY);
 	while(1)
 	{
-		date.p[date.x] = get_next_line(fd);
-		if(date.p[date.x] == 0)
+		cnt = get_next_line(fd);
+		if(cnt == 0)
 			break;
-		date.x++;
+		//free(cnt);
+		x++;
 	}
-	return date.p;
+	close(fd);
+	(*map) = (char **)malloc((x + 1) * sizeof(int *));
+	x = 0;
+	fd = open(file, O_RDONLY);
+	while(1)
+	 {
+	 	(*map)[x] = get_next_line(fd);
+		if((*map)[x] == 0)
+			break;
+	 	x++;
+	}
+	close(fd);
 }
