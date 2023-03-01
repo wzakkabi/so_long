@@ -6,12 +6,13 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:23:55 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/23 00:19:16 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/02/24 07:09:07 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "long.h"
 //function check wach kain C ola E ola  p and if there is some other carracter
+
 int	check_ecp(char **p, struct strct s)
 {
 	s.y = ((s.E = 0), (s.C = 0), (s.P = 0), (s.line = ft_strlen(p[0])), -1);
@@ -27,17 +28,17 @@ int	check_ecp(char **p, struct strct s)
 			else if (p[s.y][s.x] == 'C')
 				s.C++;
 			else if (p[s.y][s.x] != '0' && p[s.y][s.x] != '1')
-				return (1);
+				return (putstr("there is someting other caracter in the map"));
 		}
 		if (s.line != ft_strlen(p[s.y]) || p[s.y][0] != '1' ||
 		p[s.y][s.x - 1] != '1')
-			return (2);
+			return (putstr("check 1 in the firt or the last or line"));
 	}
 	if (check_line_first_and_last(p[0], p[s.y - 1]) == 0)
-		return (4);
+		return (putstr("check the first line or the last"));
 	if (s.E != 1 || s.P != 1 || s.C < 1)
-		return (3);
-	return (0);
+		return (putstr("check P OR C or E"));
+	return (1);
 }
 //check wach kain fin idoz l player bach i yakol kolchi
 

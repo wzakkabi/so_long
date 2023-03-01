@@ -1,4 +1,4 @@
-NAME = a.a
+NAME = chihaja.a
 FLAGS = -Wall -Wextra -Werror
 SRC = so_long.c valid_path.c ./gg/get_next_line.c ./gg/get_next_line_utils.c
 
@@ -10,8 +10,8 @@ $(NAME) : $(OBJ)
 	mv get_next_line.o get_next_line_utils.o ./gg
 	ar -rcs $(NAME) $(OBJ)
 	rm -rf $(OBJ)
-	gcc main.c $(NAME)
-	./a.out map.ber
+	gcc main.c $(NAME) libmlx.dylib
+	
 
 %.o : %.c
 	gcc $(FLAGS) -c $<
