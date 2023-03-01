@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:25:14 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/28 23:05:47 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/02 00:46:06 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ struct strct
 	int y;
 	int line;
 };
+
+struct s_image
+{
+	void *mlx;
+	void *img;
+	char *relative_path;
+	int img_width;
+	int img_height;
+}t_img;
+
+
 int	check_ecp(char **p, struct strct s);
 int		check_P_C_E(char **p);
 void	check_path(char **mp, int *y, int x);
