@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:04:13 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/05 08:05:18 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:28:04 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,31 @@ int test_map(char *file)
 			return putstr("path_invalid :(");
 		}
 	}
-	else
-		free_malloc(map);
+	free_malloc(map);
 	return 1;
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	// char *p;
+	// p = "0123456789"
+	if (n == -2147483648)
+		putstr("-2147483648");
+	else
+	{
+		if (n < 0)
+		{
+			write(1,"-",1);
+			n = n * -1;
+		}
+		if (n > 9)
+		{
+			ft_putnbr_fd(n / 10, fd);
+		}
+		//ft_putchar_fd((n % 10) + '0', fd);
+		n = (n%10 + '0');
+		write(1, &n, 1);
+	}
 }
 
 int main(int ac, char **av)

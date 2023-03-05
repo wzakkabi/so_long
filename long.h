@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:25:14 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/05 08:05:05 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:22:30 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,22 @@ struct game
 	void *imgcoin;
 	void *imgtri9;
 	void *imgplr;
+	char **mp;
+	int xpostion;
+	int ypostion;
+	int xEpostion;
+	int yEpostion;
 	int		img_width;
 	int		img_height;
 	int y;
 	int x;
+	int move;
+	int coin;
+	int C;
 };
 
-
+void move_gg(struct game *g);
+void	ft_putnbr_fd(int n, int fd);
 int	check_ecp(char **p, struct strct s);
 int		check_P_C_E(char **p);
 void	check_path(char **mp, int *y, int x);
@@ -54,5 +63,6 @@ void	read_map(char ***map, char *file);
 int putstr(char *a);
 void free_malloc(char **p);
 void so_long(char *file);
+void put_img(struct game *g);
 
 #endif
