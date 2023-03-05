@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:04:13 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/28 23:05:05 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/05 08:05:18 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void free_malloc(char **p)
 		free(p[x]);
 	free(p);
 }
+
 int test_map(char *file)
 {
 	char **map;
@@ -69,8 +70,7 @@ int main(int ac, char **av)
 			x = test_map(av[1]);
 			if(x == 1)
 			{
-				read_map(&p, av[1]);
-				so_long(p);
+				so_long(av[1]);
 			}
 			else
 				return 0;

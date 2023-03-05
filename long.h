@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:25:14 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/02 00:46:06 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/05 08:05:05 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,20 @@ struct strct
 	int line;
 };
 
-struct s_image
+struct game
 {
 	void *mlx;
-	void *img;
-	char *relative_path;
-	int img_width;
-	int img_height;
-}t_img;
+	void *mlx_wind;
+	void *imgstone;
+	void *imghol;
+	void *imgcoin;
+	void *imgtri9;
+	void *imgplr;
+	int		img_width;
+	int		img_height;
+	int y;
+	int x;
+};
 
 
 int	check_ecp(char **p, struct strct s);
@@ -47,6 +53,6 @@ int		check_p_path_valid_or_not(char **p);
 void	read_map(char ***map, char *file);
 int putstr(char *a);
 void free_malloc(char **p);
-void so_long(char **mp);
+void so_long(char *file);
 
 #endif
