@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:04:13 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/06 19:10:32 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/06 23:44:38 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	test_map(char *file)
 	struct s_strct	s;
 
 	read_map(&map, file);
-	vld = check_ecp(map, s);
+	vld = check_ecp(map, &s);
 	if (vld == 1)
 	{
 		vld = -1;
@@ -100,7 +100,6 @@ void	ft_putnbr(int n)
 int	main(int ac, char **av)
 {
 	int		x;
-	char	**p;
 
 	x = 0;
 	if (ac == 2)

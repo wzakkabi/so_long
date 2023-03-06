@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:25:14 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/06 23:23:40 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/06 23:41:34 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		test(int key, struct s_game *g);
 void	count_c_e(struct s_game *g);
 void	put_img(struct s_game *g);
 void	put_img_chyata(struct s_game *g);
-int		check_ecp(char **p, struct s_strct s);
+int		check_ecp(char **p, struct s_strct *s);
 int		check_p_path_valid_or_not(char **p);
 void	check_path(char **mp, int *y, int x);
 int		check_line_first_and_last(char *first, char *last);
