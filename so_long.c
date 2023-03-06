@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 19:15:03 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/05 20:18:39 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/06 10:58:01 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void move_gg(struct game *g)
 {
 	mlx_put_image_to_window(g->mlx, g->mlx_wind, g->imghol, g->xEpostion * 79, g->yEpostion * 79);
 	mlx_put_image_to_window(g->mlx, g->mlx_wind, g->imgplr, g->xpostion * 79, g->ypostion * 79);
+	if(g->move != g->move_new_line)
+	{
+		write(1, "\n", 1);
+		g->move_new_line = g->move;
+	}
 	if(g->mp[g->ypostion][g->xpostion] == 'C')
 	{
 		g->C++;
@@ -38,6 +43,14 @@ void move_gg(struct game *g)
 
 int test(int key, struct game *g)
 {
+	if(key == 13 && g->mp[g->ypostion - 1][g->xpostion] != '1')
+		ft_putnbr(++g->move);
+	else if(key == 1 && g->mp[g->ypostion + 1][g->xpostion] != '1')
+		ft_putnbr(++g->move);
+	else if(key == 0 && g->mp[g->ypostion][g->xpostion - 1] != '1')
+		ft_putnbr(++g->move);
+	else if(key == 2 && g->mp[g->ypostion][g->xpostion + 1] != '1')
+		ft_putnbr(++g->move);
 	if(key == 13 && g->mp[g->ypostion - 1][g->xpostion] != '1')
 		mlx_put_image_to_window(g->mlx, g->mlx_wind, g->imgtri9, g->xpostion * 79, g->ypostion-- * 79);
 	else if(key == 1 && g->mp[g->ypostion + 1][g->xpostion] != '1')
@@ -65,6 +78,7 @@ void count_C_E(struct game *g)
 	int y;
 	int c;
 	
+	g->move = 0;
 	g->move = 0;
 	x = ((y = -1), (c = 0), -1);
 	g->C = 0;

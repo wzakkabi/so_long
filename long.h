@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:25:14 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/05 20:22:30 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/06 10:57:14 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ struct game
 	int y;
 	int x;
 	int move;
+	int move_new_line;
 	int coin;
 	int C;
 };
 
 void move_gg(struct game *g);
-void	ft_putnbr_fd(int n, int fd);
+void	ft_putnbr(int n);
 int	check_ecp(char **p, struct strct s);
 int		check_P_C_E(char **p);
 void	check_path(char **mp, int *y, int x);

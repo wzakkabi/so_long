@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:04:13 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/05 20:28:04 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/06 10:53:53 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	putstr(char *a)
 		write(1, &a[x], 1);
 	return (0);
 }
+
 void free_malloc(char **p)
 {
 	int x = -1;
@@ -56,10 +57,8 @@ int test_map(char *file)
 	return 1;
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr(int n)
 {
-	// char *p;
-	// p = "0123456789"
 	if (n == -2147483648)
 		putstr("-2147483648");
 	else
@@ -71,9 +70,8 @@ void	ft_putnbr_fd(int n, int fd)
 		}
 		if (n > 9)
 		{
-			ft_putnbr_fd(n / 10, fd);
+			ft_putnbr(n / 10);
 		}
-		//ft_putchar_fd((n % 10) + '0', fd);
 		n = (n%10 + '0');
 		write(1, &n, 1);
 	}
