@@ -6,27 +6,27 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:23:55 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/02/24 07:09:07 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:03:49 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "long.h"
 //function check wach kain C ola E ola  p and if there is some other carracter
 
-int	check_ecp(char **p, struct strct s)
+int	check_ecp(char **p, struct s_strct s)
 {
-	s.y = ((s.E = 0), (s.C = 0), (s.P = 0), (s.line = ft_strlen(p[0])), -1);
+	s.y = ((s.e = 0), (s.c = 0), (s.p = 0), (s.line = ft_strlen(p[0])), -1);
 	while (p[++s.y])
 	{
 		s.x = -1;
 		while (p[s.y][++s.x])
 		{
 			if (p[s.y][s.x] == 'P')
-				s.P++;
+				s.p++;
 			else if (p[s.y][s.x] == 'E')
-				s.E++;
+				s.e++;
 			else if (p[s.y][s.x] == 'C')
-				s.C++;
+				s.c++;
 			else if (p[s.y][s.x] != '0' && p[s.y][s.x] != '1')
 				return (putstr("there is someting other caracter in the map"));
 		}
@@ -36,7 +36,7 @@ int	check_ecp(char **p, struct strct s)
 	}
 	if (check_line_first_and_last(p[0], p[s.y - 1]) == 0)
 		return (putstr("check the first line or the last"));
-	if (s.E != 1 || s.P != 1 || s.C < 1)
+	if (s.e != 1 || s.p != 1 || s.c < 1)
 		return (putstr("check P OR C or E"));
 	return (1);
 }
@@ -65,7 +65,7 @@ int	check_p_path_valid_or_not(char **p)
 flkher kantcheck wach ba9a chi c ola E ila kaint ba9a rah invalid path*/
 void	check_path(char **mp, int *y, int x)
 {
-	struct strct	date;
+	struct s_strct	date;
 
 	while (mp[*y][++x])
 	{
