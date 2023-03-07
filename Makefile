@@ -9,8 +9,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	mv get_next_line.o get_next_line_utils.o ./gg
 	ar -rcs $(NAME) $(OBJ)
-	gcc $(FLAGS) main.c $(NAME) libmlx.dylib -o so_long
-	
+	gcc $(FLAGS) main.c $(NAME) libmlx.dylib -o so_longls
 
 %.o : %.c
 	gcc $(FLAGS) -c $<
