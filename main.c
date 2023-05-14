@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 17:04:13 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/06 23:44:38 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/05/14 18:29:54 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ void	free_malloc(char **p, int not_struct, struct s_game *g)
 		mlx_destroy_image(g->mlx, g->imgcoin);
 		mlx_destroy_image(g->mlx, g->imgtri9);
 		mlx_destroy_image(g->mlx, g->imgplr);
-		free(g->mlx);
 		g->x = -1;
 		while (g->mp[++g->x])
 			free(g->mp[g->x]);
-		free(g->mp);
 	}
 	else
 	{
@@ -54,7 +52,7 @@ int	test_map(char *file)
 	int				vld;
 	struct s_strct	s;
 
-	read_map(&map, file);
+	read_map(&map, file, 0);
 	vld = check_ecp(map, &s);
 	if (vld == 1)
 	{
@@ -117,6 +115,8 @@ int	main(int ac, char **av)
 			else
 				return (0);
 		}
+		else
+			write(1, "map must end with .ber 👀", 27);
 	}
 	return (0);
 }

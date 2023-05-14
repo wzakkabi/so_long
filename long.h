@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:25:14 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/06 23:41:34 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/05/14 18:43:51 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "./gg/get_next_line.h"
+# include "get_next_line.h"
 # include <unistd.h>
 
 struct s_strct
@@ -70,5 +70,5 @@ int		check_ecp(char **p, struct s_strct *s);
 int		check_p_path_valid_or_not(char **p);
 void	check_path(char **mp, int *y, int x);
 int		check_line_first_and_last(char *first, char *last);
-void	read_map(char ***map, char *file);
+void	read_map(char ***map, char *file, int x);
 #endif

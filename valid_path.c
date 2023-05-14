@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:23:55 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/06 23:49:58 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/05/14 18:08:11 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,14 @@ int	check_line_first_and_last(char *first, char *last)
 }
 
 //hna kan read l map o kan malloki liha
-void	read_map(char ***map, char *file)
+void	read_map(char ***map, char *file, int x)
 {
-	int		x;
 	int		fd;
 	char	*cnt;
 
 	fd = ((x = 0), open(file, O_RDONLY));
+	if (fd < 0)
+		exit(1);
 	while (1)
 	{
 		cnt = get_next_line(fd);
@@ -125,8 +126,7 @@ void	read_map(char ***map, char *file)
 	}
 	close(fd);
 	(*map) = (char **)malloc((x + 1) * sizeof(int *));
-	x = 0;
-	fd = open(file, O_RDONLY);
+	fd = ((x = 0), open(file, O_RDONLY));
 	while (1)
 	{
 		(*map)[x] = get_next_line(fd);

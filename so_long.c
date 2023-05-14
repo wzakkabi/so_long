@@ -6,7 +6,7 @@
 /*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 19:15:03 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/03/06 23:35:02 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2023/05/14 18:29:05 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	so_long(char *file)
 {
 	struct s_game	g;
 
-	read_map(&g.mp, file);
+	read_map(&g.mp, file, 0);
 	g.x = ft_strlen(g.mp[0]);
 	g.y = 0;
 	while (g.mp[g.y])
