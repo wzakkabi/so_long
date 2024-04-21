@@ -16,7 +16,7 @@ To play `so_long`, follow these steps:
 
 1. Clone the repository to your local machine:
 ```shell
-git@github.com:wzakkabi/so_long.git
+git clone https://github.com/wzakkabi/so_long.git
 ```
 2. Compile the source files:
 ```shell
