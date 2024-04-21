@@ -40,11 +40,14 @@ Maps are stored in `.ber` files and consist of the following characters:
 - `P`: Player character
 
 Example map:
+```shell
 11111111111111111111
 10C001C1000000000001
 10010100100010000C01
 1000000000001000E0P1
 11111111111111111111
+```
+<img width="1579" alt="Screen Shot 2024-04-21 at 8 15 11 PM" src="https://github.com/wzakkabi/so_long/assets/114888333/c4269ce5-a38b-4e60-b607-aa277faf7ac2">
 
 ## Credits
 The `so_long` project was created by [walid zakkabi]. Special thanks to (https://www.1337.ma/en/) and (https://www.42network.org)] for their contributions and support.
