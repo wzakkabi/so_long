@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzakkabi <wzakkabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wzakkabi <wzakkabi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 19:15:03 by wzakkabi          #+#    #+#             */
-/*   Updated: 2023/05/14 18:29:05 by wzakkabi         ###   ########.fr       */
+/*   Updated: 2024/04/21 19:53:10 by wzakkabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	move_gg(struct s_game *g)
 
 int	ft_close(struct s_game *g)
 {
-	write(1, "7ytiha 🤬", 11);
+	write(1, "exit\n", 5);
 	mlx_destroy_window(g->mlx, g->mlx_wind);
 	free_malloc(NULL, 1, g);
 	exit(1);
